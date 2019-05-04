@@ -46,13 +46,13 @@ export default class Theme {
 	}
 
 	applyStyles(styles) {
-		const head = document.head || document.getElementsByTagName('head')[0];
+		const head = document.head;
 		const style = document.createElement('style');
 
-		style.cssText = styles;
+		style.appendChild(document.createTextNode(styles));
 
-		this._styleElements.push(style);
-		head.appendChild(style);
+		this._addedStyleElements.push(style);
+		head.prepend(style);
 	}
 
 	applyHTML(content) {

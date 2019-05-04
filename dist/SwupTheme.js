@@ -153,13 +153,13 @@ var Theme = function () {
 	}, {
 		key: 'applyStyles',
 		value: function applyStyles(styles) {
-			var head = document.head || document.getElementsByTagName('head')[0];
+			var head = document.head;
 			var style = document.createElement('style');
 
-			style.cssText = styles;
+			style.appendChild(document.createTextNode(styles));
 
-			this._styleElements.push(style);
-			head.appendChild(style);
+			this._addedStyleElements.push(style);
+			head.prepend(style);
 		}
 	}, {
 		key: 'applyHTML',
