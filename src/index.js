@@ -37,12 +37,12 @@ export default class Theme {
 
 	mount() {
 		// this is mount method rewritten by class extending
-		// and is executed when swup is enabled with plugin
+		// and is executed when swup is enabled with theme
 	}
 
 	unmount() {
 		// this is unmount method rewritten by class extending
-		// and is executed when swup with plugin is disabled
+		// and is executed when swup with theme is disabled
 	}
 
 	applyStyles(styles) {
