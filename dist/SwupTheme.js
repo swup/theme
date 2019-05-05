@@ -124,9 +124,9 @@ var Theme = function () {
 			});
 
 			// remove added HTML
-			this._addedHTMLContent.forEach(function (content) {
-				// not the most classy option
-				document.body.innerHTML.replace(content, '');
+			this._addedHTMLContent.forEach(function (element) {
+				element.outerHTML = '';
+				element = null;
 			});
 
 			// remove added classnames
@@ -164,9 +164,10 @@ var Theme = function () {
 	}, {
 		key: 'applyHTML',
 		value: function applyHTML(content) {
-			this._addedHTMLContent.push(content);
-			// seems to be a best option https://stackoverflow.com/a/51468627/5831449
-			document.body.insertAdjacentHTML('beforeend', content);
+			var element = document.createElement('div');
+			element.innerHTML = content;
+			this._addedHTMLContent.push(element);
+			document.body.appendChild(element);
 		}
 	}, {
 		key: 'addClassName',

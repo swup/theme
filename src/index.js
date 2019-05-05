@@ -20,9 +20,9 @@ export default class Theme {
 		});
 
 		// remove added HTML
-		this._addedHTMLContent.forEach((content) => {
-			// not the most classy option
-			document.body.innerHTML.replace(content, '');
+		this._addedHTMLContent.forEach((element) => {
+			element.outerHTML = '';
+			element = null;
 		});
 
 		// remove added classnames
@@ -56,9 +56,10 @@ export default class Theme {
 	}
 
 	applyHTML(content) {
-		this._addedHTMLContent.push(content);
-		// seems to be a best option https://stackoverflow.com/a/51468627/5831449
-		document.body.insertAdjacentHTML('beforeend', content);
+		const element = document.createElement('div');
+		element.innerHTML = content;
+		this._addedHTMLContent.push(element);
+		document.body.appendChild(element);
 	}
 
 	addClassName(selector, name) {
