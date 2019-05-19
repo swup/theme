@@ -204,12 +204,7 @@ var Theme = function () {
 		value: function addClassName(selector, name) {
 			var _this = this;
 
-			var elements = void 0;
-			if (typeof selector !== 'string') {
-				elements = selector;
-			} else {
-				elements = Array.prototype.slice.call(document.querySelectorAll(selector));
-			}
+			var elements = Array.prototype.slice.call(document.querySelectorAll(selector));
 
 			// save so it can be later removed
 			elements.forEach(function (element) {
@@ -218,6 +213,7 @@ var Theme = function () {
 			});
 
 			this.swup.on('contentReplaced', function () {
+				var elements = Array.prototype.slice.call(document.querySelectorAll(selector));
 				elements.forEach(function (element) {
 					element.classList.add('swup-transition-' + name);
 				});

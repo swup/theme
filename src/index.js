@@ -63,12 +63,7 @@ export default class Theme {
 	}
 
 	addClassName(selector, name) {
-		let elements;
-		if (typeof selector !== 'string') {
-			elements = selector;
-		} else {
-			elements = Array.prototype.slice.call(document.querySelectorAll(selector));
-		}
+		const elements = Array.prototype.slice.call(document.querySelectorAll(selector));
 
 		// save so it can be later removed
 		elements.forEach((element) => {
@@ -77,6 +72,7 @@ export default class Theme {
 		});
 
 		this.swup.on('contentReplaced', () => {
+			const elements = Array.prototype.slice.call(document.querySelectorAll(selector));
 			elements.forEach((element) => {
 				element.classList.add(`swup-transition-${name}`);
 			});
