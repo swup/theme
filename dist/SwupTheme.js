@@ -218,7 +218,9 @@ var Theme = function () {
 			});
 
 			this.swup.on('contentReplaced', function () {
-				element.classList.add('swup-transition-' + name);
+				elements.forEach(function (element) {
+					element.classList.add('swup-transition-' + name);
+				});
 			});
 		}
 

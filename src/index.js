@@ -77,7 +77,9 @@ export default class Theme {
 		});
 
 		this.swup.on('contentReplaced', () => {
-			element.classList.add(`swup-transition-${name}`);
+			elements.forEach((element) => {
+				element.classList.add(`swup-transition-${name}`);
+			});
 		});
 	}
 
