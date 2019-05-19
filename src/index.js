@@ -75,6 +75,10 @@ export default class Theme {
 			this._classNameAddedToElements.push(element);
 			element.classList.add(`swup-transition-${name}`);
 		});
+
+		this.swup.on('contentReplaced', () => {
+			element.classList.add(`swup-transition-${name}`);
+		});
 	}
 
 	// this is here so we can tell if plugin was created by extending this class
