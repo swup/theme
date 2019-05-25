@@ -26,11 +26,14 @@ export default class Theme {
 		});
 
 		// remove added classnames
-		this._classNameAddedToElements.forEach((element) => {
-			element.className.split(' ').forEach((classItem) => {
-				if (new RegExp('^swup-transition-').test(classItem)) {
-					document.documentElement.classList.remove(classItem);
-				}
+		this._classNameAddedToElements.forEach((selector) => {
+			const elements = Array.prototype.slice.call(document.querySelectorAll(selector));
+			elements.forEach((element) => {
+				element.className.split(' ').forEach((classItem) => {
+					if (new RegExp('^swup-transition-').test(classItem)) {
+						document.documentElement.classList.remove(classItem);
+					}
+				});
 			});
 		});
 	}
@@ -68,7 +71,7 @@ export default class Theme {
 
 		// save so it can be later removed
 		elements.forEach((element) => {
-			this._classNameAddedToElements.push(element);
+			this._classNameAddedToElements.push(selector);
 			element.classList.add(`swup-transition-${name}`);
 		});
 
