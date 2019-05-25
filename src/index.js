@@ -49,6 +49,7 @@ export default class Theme {
 		const head = document.head;
 		const style = document.createElement('style');
 
+		style.setAttribute('data-swup-theme', '');
 		style.appendChild(document.createTextNode(styles));
 
 		this._addedStyleElements.push(style);
