@@ -7,6 +7,9 @@ export default class Theme {
 		// save original and replace animationSelector option
 		this._originalAnimationSelectorOption = String(this.swup.options.animationSelector);
 		this.swup.options.animationSelector = '[class*="swup-transition-"]';
+
+		// add classes after each content replace
+		this.swup.on('contentReplaced', this._addClassNameToElement);
 	}
 
 	_afterUnmount() {
@@ -26,8 +29,8 @@ export default class Theme {
 		});
 
 		// remove added classnames
-		this._classNameAddedToElements.forEach((selector) => {
-			const elements = Array.prototype.slice.call(document.querySelectorAll(selector));
+		this._classNameAddedToElements.forEach((item) => {
+			const elements = Array.prototype.slice.call(document.querySelectorAll(item.selector));
 			elements.forEach((element) => {
 				element.className.split(' ').forEach((classItem) => {
 					if (new RegExp('^swup-transition-').test(classItem)) {
@@ -36,6 +39,8 @@ export default class Theme {
 				});
 			});
 		});
+
+		this.swup.off('contentReplaced', this._addClassNameToElement);
 	}
 
 	mount() {
@@ -67,21 +72,21 @@ export default class Theme {
 	}
 
 	addClassName(selector, name) {
-		const elements = Array.prototype.slice.call(document.querySelectorAll(selector));
-
 		// save so it can be later removed
-		elements.forEach((element) => {
-			this._classNameAddedToElements.push(selector);
-			element.classList.add(`swup-transition-${name}`);
-		});
+		this._classNameAddedToElements.push({ selector, name });
 
-		this.swup.on('contentReplaced', () => {
-			const elements = Array.prototype.slice.call(document.querySelectorAll(selector));
+		// add class the first time
+		this._addClassNameToElement();
+	}
+
+	_addClassNameToElement = () => {
+		this._classNameAddedToElements.forEach((item) => {
+			const elements = Array.prototype.slice.call(document.querySelectorAll(item.selector));
 			elements.forEach((element) => {
-				element.classList.add(`swup-transition-${name}`);
+				element.classList.add(`swup-transition-${item.name}`);
 			});
 		});
-	}
+	};
 
 	// this is here so we can tell if plugin was created by extending this class
 	isSwupPlugin = true;
