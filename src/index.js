@@ -31,7 +31,7 @@ export default class Theme {
 			elements.forEach((element) => {
 				element.className.split(' ').forEach((classItem) => {
 					if (new RegExp('^swup-transition-').test(classItem)) {
-						document.documentElement.classList.remove(classItem);
+						element.classList.remove(classItem);
 					}
 				});
 			});

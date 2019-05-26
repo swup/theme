@@ -165,7 +165,7 @@ var Theme = function () {
 				elements.forEach(function (element) {
 					element.className.split(' ').forEach(function (classItem) {
 						if (new RegExp('^swup-transition-').test(classItem)) {
-							document.documentElement.classList.remove(classItem);
+							element.classList.remove(classItem);
 						}
 					});
 				});
