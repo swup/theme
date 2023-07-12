@@ -1,7 +1,6 @@
-export default class Theme {
-	// Identify plugins
-	isSwupPlugin = true;
+import Plugin from '@swup/plugin';
 
+export default class Theme extends Plugin {
 	_addedStyleElements = [];
 	_addedHTMLContent = [];
 	_classNameAddedToElements = [];
