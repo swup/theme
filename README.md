@@ -1,6 +1,6 @@
 # Swup Base Theme
 
-Base class for creating swup themes.
+Base class for creating [swup](https://swup.js.org) themes.
 
 ## Creating a Theme
 
