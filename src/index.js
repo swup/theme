@@ -11,7 +11,7 @@ export default class Theme extends Plugin {
 		this.swup.options.animationSelector = '[class*="swup-transition-"]';
 
 		// Add classes after each content replace
-		this.swup.hooks.on('replaceContent', this._addClassNameToElement);
+		this.swup.hooks.on('content:replace', this._addClassNameToElement);
 	}
 
 	_afterUnmount() {
@@ -42,7 +42,7 @@ export default class Theme extends Plugin {
 			});
 		});
 
-		this.swup.hooks.off('replaceContent', this._addClassNameToElement);
+		this.swup.hooks.off('content:replace', this._addClassNameToElement);
 	}
 
 	applyStyles(styles) {
