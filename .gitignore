@@ -14,4 +14,5 @@ wiki-wishlist
 .editorconfig
 .idea
 lib
+dist
 /plugins
