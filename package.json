@@ -7,7 +7,13 @@
   "source": "src/index.ts",
   "main": "./dist/index.cjs",
   "module": "./dist/index.module.js",
-  "exports": "./dist/index.modern.js",
+  "exports": {
+    ".": {
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.modern.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
   "unpkg": "./dist/index.umd.js",
   "files": [
     "dist"
