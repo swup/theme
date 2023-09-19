@@ -1,9 +1,10 @@
 import Plugin from '@swup/plugin';
 
-export default class Theme extends Plugin {
-	_addedStyleElements = [];
-	_addedHTMLContent = [];
-	_classNameAddedToElements = [];
+export default abstract class Theme extends Plugin {
+	_originalAnimationSelectorOption: string;
+	_addedStyleElements: Element[] = [];
+	_addedHTMLContent: Element[] = [];
+	_classNameAddedToElements: ({ selector: string, name: string })[] = [];
 
 	_beforeMount() {
 		// Store original animationSelector option, then replace it
@@ -21,14 +22,14 @@ export default class Theme extends Plugin {
 		// Remove added styles
 		this._addedStyleElements.forEach((element) => {
 			element.outerHTML = '';
-			element = null;
 		});
+		this._addedStyleElements = [];
 
 		// Remove added HTML
 		this._addedHTMLContent.forEach((element) => {
 			element.outerHTML = '';
-			element = null;
 		});
+		this._addedHTMLContent = [];
 
 		// Remove added classnames
 		this._classNameAddedToElements.forEach((item) => {
@@ -45,7 +46,7 @@ export default class Theme extends Plugin {
 		this.swup.hooks.off('content:replace', this._addClassNameToElement);
 	}
 
-	applyStyles(styles) {
+	applyStyles(styles: string) {
 		const style = document.createElement('style');
 		style.setAttribute('data-swup-theme', '');
 		style.appendChild(document.createTextNode(styles));
@@ -54,7 +55,7 @@ export default class Theme extends Plugin {
 		this._addedStyleElements.push(style);
 	}
 
-	applyHTML(content) {
+	applyHTML(content: string) {
 		const element = document.createElement('div');
 		element.innerHTML = content;
 		document.body.appendChild(element);
@@ -62,7 +63,7 @@ export default class Theme extends Plugin {
 		this._addedHTMLContent.push(element);
 	}
 
-	addClassName(selector, name) {
+	addClassName(selector: string, name: string) {
 		// save so it can be later removed
 		this._classNameAddedToElements.push({ selector, name });
 
