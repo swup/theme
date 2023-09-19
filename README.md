@@ -4,9 +4,12 @@ Base class for creating [swup](https://swup.js.org) themes.
 
 ## Creating a Theme
 
-To create a new theme, use the official [swup theme template](https://github.com/swup/theme-template). It comes with detailed instructions and the required tooling.
+To create a new theme, use the official [swup theme template](https://github.com/swup/theme-template).
+It comes with detailed instructions and the required tooling.
 
 ## Usage
+
+Import the base class and extend your theme from it.
 
 ```js
 import Theme from '@swup/theme';
@@ -18,20 +21,26 @@ export default class ThemeName extends Theme {
 }
 ```
 
-## Commands
+## Development
 
-The base theme provides a few simple command line tools to help with bundling and linting.
+The official [swup command-line interface](https://github.com/swup/cli) has commands to help with
+bundling and linting themes.
+
+```sh
+npm install --save-dev @swup/cli
+```
 
 ### Bundling
 
-Bundle the theme for production using [microbundle](https://github.com/developit/microbundle), creating ESM and UMD builds.
+Bundle the theme for production using [microbundle](https://github.com/developit/microbundle),
+creating ESM and UMD builds.
 
 ```bash
-# Bundle and transpile theme code
-swup-plugin bundle
+# Bundle and transpile code for distribution
+swup package:bundle
 
-# Bundle theme code in watch mode
-swup-plugin dev
+# Bundle code in watch mode
+swup package:dev
 ```
 
 ### Linting & formatting
@@ -39,18 +48,19 @@ swup-plugin dev
 Lint the theme code using [prettier](https://prettier.io/) and swup's recommended rules.
 
 ```bash
-# Lint theme code
-swup-plugin lint
+# Lint code
+swup package:lint
 
 # Fix and format any lint errors
-swup-plugin format
+swup package:format
 ```
 
 ### Package info
 
-Check that the theme's package.json file contains the required information for microbundle: input, output, export map, amd name, etc.
+Check that the themes's package.json file contains the required information for microbundle:
+input, output, export map, amd name, etc.
 
 ```bash
-# Check theme package info
-swup-plugin check
+# Check package info
+swup package:check
 ```
