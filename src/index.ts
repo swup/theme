@@ -1,7 +1,7 @@
 import Plugin from '@swup/plugin';
 
 export default abstract class Theme extends Plugin {
-	_originalAnimationSelectorOption: string;
+	_originalAnimationSelectorOption: string = '';
 	_addedStyleElements: Element[] = [];
 	_addedHTMLContent: Element[] = [];
 	_classNameAddedToElements: ({ selector: string, name: string })[] = [];
