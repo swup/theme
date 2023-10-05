@@ -1,7 +1,5 @@
 # Changelog
 
-<!-- ## [Unreleased] -->
-
 ## [2.1.0] - 2023-09-19
 
 - Port to TypeScript
@@ -15,8 +13,6 @@
 ## [1.0.0] - 2019-05-20
 
 - Initial release
-
-[Unreleased]: https://github.com/swup/theme/compare/2.1.0...HEAD
 
 [2.1.0]: https://github.com/swup/theme/releases/tag/2.1.0
 [2.0.0]: https://github.com/swup/theme/releases/tag/2.0.0
